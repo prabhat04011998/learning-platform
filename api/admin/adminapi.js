@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const Admin = require('../../models/admin');
 const Student = require('../../models/student');
 const Instructor = require('../../models/instructor');
+const Course = require('../../models/course');
 
 
 process.env.SECRET_KEY = 'secret'
@@ -70,4 +71,19 @@ admin.get('/allstudent',async (req,res) => {
     })
 })
 
+admin.get('/allcourses', async (req,res)=> {
+  Course.find()
+  .then(courses => {
+    if (courses) {
+      if(courses.length == 0){
+        res.send('no courses present')
+      }else{
+        res.status(200).send(courses)
+      }
+    }
+  })
+  .catch(err => {
+    res.send('error: ' + err)
+  })
+})
 module.exports = admin

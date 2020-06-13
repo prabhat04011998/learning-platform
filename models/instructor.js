@@ -23,6 +23,10 @@ const InstructorSchema = new Schema({
     contact:{
         type:String,
         required:false
+    },
+    isActive:{
+        type:Boolean,
+        default:false
     }
 
 })
