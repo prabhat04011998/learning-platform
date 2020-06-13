@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const Admin = require('../../models/admin');
+const Student = require('../../models/student');
 const Instructor = require('../../models/instructor');
 
 
@@ -36,5 +37,37 @@ admin.post('/registerinstructor', (req,res) => {
         })
 })
 
+
+admin.get('/allinstructor',async (req,res) => {
+  Instructor.find()
+  .then(instructor => {
+      if (instructor) {
+        if(instructor.length == 0){
+          res.send('no instructors present')
+        }else{
+          res.status(200).send(instructor)
+        }
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
+
+admin.get('/allstudent',async (req,res) => {
+  Student.find()
+  .then(student => {
+      if (student) {
+        if(student.length == 0){
+          res.send('no instructors present')
+        }else{
+          res.status(200).send(student)
+        }
+      }
+    })
+    .catch(err => {
+      res.send('error: ' + err)
+    })
+})
 
 module.exports = admin

@@ -8,23 +8,6 @@ const Instructor = require('../../models/instructor');
 
 
 process.env.SECRET_KEY = 'secret'
-
-instructor.get('/all',async (req,res) => {
-    Instructor.find()
-    .then(instructor => {
-        if (instructor) {
-          if(instructor.length == 0){
-            res.send('no instructors present')
-          }else{
-            res.status(200).send(instructor)
-          }
-        }
-      })
-      .catch(err => {
-        res.send('error: ' + err)
-      })
-})
-
   
 instructor.post('/login', (req, res) => {
     Instructor.findOne({
@@ -36,7 +19,7 @@ instructor.post('/login', (req, res) => {
             // Passwords match
             const payload = {
               _id: instructor._id,
-              first_name: instructor.instructor_name,
+              instructor_name: instructor.instructor_name,
               contact: instructor.contact,
               email: instructor.email
             }

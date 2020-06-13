@@ -16,6 +16,10 @@ const InstructorSchema = new Schema({
         type: String,
         required: true
     },
+    instructor_description:{
+        type:String,
+        required:false
+    },
     contact:{
         type:String,
         required:false
