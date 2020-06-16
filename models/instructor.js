@@ -27,9 +27,29 @@ const InstructorSchema = new Schema({
     isActive:{
         type:Boolean,
         default:false
+    },
+    socialmedia_profiles:{
+        instagram:String,
+        facebook:String,
+        linkedin:String,
+        twitter:String
+    },
+    profile_image:{
+        type:String,
+        required:false
     }
 
 })
+
+InstructorSchema.methods.toggleActive = async function(input){
+    const instructor = this
+    if(input == 1){
+        instructor.isActive=true
+    }else{
+        instructor.isActive=false
+    }
+    instructor.save()
+}
 
 
 module.exports = Instructor = mongoose.model('Instructors', InstructorSchema)

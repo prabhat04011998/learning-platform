@@ -15,7 +15,48 @@ const courseSchema = new Schema({
         type:String,
         required:false
     },
-    data:[]
+    modules:[{
+        module_name:String,
+        created_at:Date,
+        data:[]
+    }],
+    category:{
+        type:String,
+        required:true
+    },
+    price:{
+        type:String,
+        required:true
+    },
+    course_image:{
+        type:String,
+        required:false
+    },
+    banner_image:{
+        type:String,
+        required:false
+    },
+    course_advertisement:{
+        type:String,
+        required:false
+    },
+    tags:{
+        type:[],
+        required:true
+    },
+    isActive:{
+        type:Boolean,
+        default:true
+    },
+    updated_on:{
+        type:Date,
+        required:false
+    },
+    course_feedback:{
+        type:String,
+        required:false
+    }
 })
 
 module.exports = Course = mongoose.model('Courses', courseSchema)
+

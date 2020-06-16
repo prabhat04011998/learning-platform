@@ -44,28 +44,23 @@ instructor.post('/login', (req, res) => {
 
 // api to make courses
   
-instructor.post('/makecourse', (req, res) => {
+instructor.post('/makecourse', async (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   
     Instructor.findOne({
       _id: decoded._id
     })
-      .then(instructor => {
+      .then( async instructor => {
         if (instructor) {
-          const mycourse = {
-            instructor_id:decoded._id,
-            course_name:req.body.course_name,
-            course_details:req.body.course_details,
-            data:[]
-          }
-          Course.create(mycourse)
-                .then(course => {
-                  res.json({ status: course.course_name + '  Registered!' })
-                })
-                .catch(err => {
-                  res.send('error: ' + err)
-                })
-          res.status(200).send('coruse added successfully')
+          const course = new Course(req.body)
+          course.instructor_id=decoded._id
+          await course.save((err) => {
+            if(err){
+                res.send(err)
+            }else{
+                return res.status(200).json('course made successfully')
+            }
+        })
         } else {
           res.send('instructor does not exist')
         }
@@ -183,43 +178,81 @@ instructor.patch('/updatecourse', async (req,res) => {
       })
   })
 
-  // api to add data to course
+// api to create a course module
 
-  // instructor.post('/dataupload', (req, res) => {
-
-  //   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+instructor.post('/addmodule' , async (req,res) => {
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   
-  //   Instructor.findOne({
-  //     _id: decoded._id
-  //   })
-  //     .then(instructor => {
-  //       if (instructor) {
-  //         if (req.files === null) {
-  //           return res.status(400).json({ msg: 'No file uploaded' });
-  //         }
-        
-  //         const file = req.files.file;
-        
-  //         file.mv(`${__dirname}/uploads/${instructor.instructor_name}_${file.name}`, err => {
-  //           if (err) {
-  //             console.error(err);
-  //             return res.status(500).send(err);
-  //           }
-  //           Course.findById(req.body.courseid)
-  //            .then(course => {
-  //              course.data.push(file.name)
-  //            })
-  //           res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
-  //         });
-  //       } else {
-  //         res.send('instructor does not exist')
-  //       }
-  //     })
-  //     .catch(err => {
-  //       res.send('error: ' + err)
-  //     })
+    Instructor.findOne({
+      _id: decoded._id
+    })
+      .then(instructor => {
+        if (instructor) {
+          const mymodule = {
+            module_name:req.body.module_name,
+            created_at:Date.now()
+          }
+          Course.findById(req.body.courseid)
+          .then(course => {
+            if(course){
+              course.modules.push(mymodule)
+              course.save()             
+              res.status(200).send('module added successfully')
+            }else{
+              res.send('no course found with matching id')
+            }
+          })
+        } else {
+          res.send('instructor does not exist')
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
+})
+
+  // api to add data to course module 
+
+  instructor.post('/dataupload', (req, res) => {
+
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  
+    Instructor.findOne({
+      _id: decoded._id
+    })
+      .then(instructor => {
+        if (instructor) {
+          if (req.files === null) {
+            return res.status(400).json({ msg: 'No file uploaded' });
+          }
+          const file = req.files.file;
+
+          file.mv(`./uploads/${instructor.instructor_name}_${file.name}`, err => {
+            if (err) {
+              console.error(err);
+              return res.status(500).send(err);
+            }else{
+              Course.findById(req.body.courseid)
+             .then(course => {
+               course.modules.forEach(module => {
+                 if(module._id == req.body.moduleid){
+                   module.data.push(`${file.name}`)
+                 }
+               });
+               course.save()        
+             })
+            res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+            }
+          });
+        } else {
+          res.send('instructor does not exist')
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
     
-  // });
+  });
   
 
 

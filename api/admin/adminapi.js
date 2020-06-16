@@ -23,6 +23,7 @@ admin.post('/registerinstructor', (req,res) => {
               myinstructor.password = hash
               Instructor.create(myinstructor)
                 .then(instructor => {
+                  instructor.toggleActive(1)
                   res.json({ status: instructor.email + '  Registered!' })
                 })
                 .catch(err => {
@@ -37,6 +38,7 @@ admin.post('/registerinstructor', (req,res) => {
           res.send('error: ' + err)
         })
 })
+
 
 
 admin.get('/allinstructor',async (req,res) => {
