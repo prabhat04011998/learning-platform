@@ -8,38 +8,10 @@ const Admin = require('../../models/admin');
 const Student = require('../../models/student');
 const Instructor = require('../../models/instructor');
 const Course = require('../../models/course');
+const instructor = require('../../models/instructor');
 
 
 process.env.SECRET_KEY = 'secret'
-
-admin.post('/registerinstructor', (req,res) => {
-    const myinstructor = req.body
-    Instructor.findOne({
-        email: req.body.email
-      })
-        .then(instructor => {
-          if (!instructor) {
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
-              myinstructor.password = hash
-              Instructor.create(myinstructor)
-                .then(instructor => {
-                  instructor.toggleActive(1)
-                  res.json({ status: instructor.email + '  Registered!' })
-                })
-                .catch(err => {
-                  res.send('error: ' + err)
-                })
-            })
-          } else {
-            res.json({ error: 'Instructor already exists' })
-          }
-        })
-        .catch(err => {
-          res.send('error: ' + err)
-        })
-})
-
-
 
 admin.get('/allinstructor',async (req,res) => {
   Instructor.find()
@@ -88,4 +60,44 @@ admin.get('/allcourses', async (req,res)=> {
     res.send('error: ' + err)
   })
 })
+
+
+admin.post('/registerinstructor', (req,res) => {
+    const myinstructor = req.body
+    Instructor.findOne({
+        email: req.body.email
+      })
+        .then(instructor => {
+          if (!instructor) {
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+              myinstructor.password = hash
+              Instructor.create(myinstructor)
+                .then(instructor => {
+                  instructor.toggleActive(1)
+                  res.json({ status: instructor.email + '  Registered!' })
+                })
+                .catch(err => {
+                  res.send('error: ' + err)
+                })
+            })
+          } else {
+            res.json({ error: 'Instructor already exists' })
+          }
+        })
+        .catch(err => {
+          res.send('error: ' + err)
+        })
+})
+
+admin.post('/switchactive' , (req,res) => {
+  Instructor.findById(req.body.instructorid)
+   .then( instructor => {
+      if(instructor.isActive == true){
+        instructor.toggleActive(0)
+      }else{
+        instructor.toggleActive(1)
+      }
+   })
+})
+
 module.exports = admin

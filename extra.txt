@@ -67,3 +67,56 @@
     ) : null}
   </Fragment>
   );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+REQuIRED SCREEN 
+
+home
+
+login / register routing
+
+1- for admin
+create Instructor 
+instructor permissions
+
+2-for instructor 
+login 
+dashboard->content management (make course , add module , update course , add module data )
+             student management (see students associated to course)
+3- for student 
+Register 
+login
+dashboard -> students taken courses ,All courses,buy/select course 
+
+
+RESPONSIBILITY
+
+Admin-
+Creating instructor and handling their permissions 
+
+Instructor 
+Course management (CRUD)
+Student management associated to course
+Course interactions 
+
+
+Student 
+Creating account 
+View / select course 
+Interact with course
+
