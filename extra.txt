@@ -84,23 +84,18 @@
 
 
 
-REQuIRED SCREEN 
-
-home
-
-login / register routing
+screen to be made 
 
 1- for admin
-create Instructor 
+
 instructor permissions
 
 2-for instructor 
-login 
+ 
 dashboard->content management (make course , add module , update course , add module data )
              student management (see students associated to course)
 3- for student 
-Register 
-login
+ 
 dashboard -> students taken courses ,All courses,buy/select course 
 
 

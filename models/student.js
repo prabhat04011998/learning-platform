@@ -19,7 +19,8 @@ const StudentSchema = new Schema({
   contact:{
       type:String,
       required:false
-  }
+  },
+  courses:[]
 })
 
 

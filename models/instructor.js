@@ -26,7 +26,7 @@ const InstructorSchema = new Schema({
     },
     isActive:{
         type:Boolean,
-        default:false
+        default:true
     },
     socialmedia_profiles:{
         instagram:String,
@@ -37,6 +37,14 @@ const InstructorSchema = new Schema({
     profile_image:{
         type:String,
         required:false
+    },
+    negative_points:{
+        type:Number,
+        default:0
+    },
+    is_banned:{
+        type:Boolean,
+        default:false
     }
 
 })

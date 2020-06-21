@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const fileUpload = require('express-fileupload');
 instructor.use(fileUpload())
-
+var nodemailer = require('nodemailer');
 const Instructor = require('../../models/instructor');
 const Course = require('../../models/course');
 
@@ -42,6 +42,24 @@ instructor.post('/login', (req, res) => {
       })
   })
 
+// api to update instructors details
+
+instructor.patch('/update' , async (req,res) => {
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  Instructor.findOneAndUpdate( decoded._id  , req.body , function (err , course) {
+    if (!course){
+      res.json({
+          status: "0",
+          msg: "Instructor not found"
+      })
+    }else {
+      res.status(200).json({
+          msg: "Instructor updated successfully",
+          status: "1"
+      });
+    }
+ })
+})
 // api to make courses
   
 instructor.post('/makecourse', async (req, res) => {
@@ -254,6 +272,46 @@ instructor.post('/addmodule' , async (req,res) => {
     
   });
   
+  // api to register student
+
+  instructor.post('/registerstudent', (req,res) => {
+
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    Instructor.findOne({
+      _id: decoded._id
+    })
+    .then(instructor => { 
+      if(instructor){
+        const mystudent = req.body
+      Student.findOne({
+        email: req.body.email
+      })
+        .then(student => {
+          if (!student) {
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+              mystudent.password = hash
+              Student.create(mystudent)
+                .then(student => {
+                  res.json({ 
+                    status: 1,
+                    message: student.email + '  Registered!' 
+                  })
+                })
+                .catch(err => {
+                  res.json({ error: err })
+                })
+            })
+          } else {
+            res.json({ error: 'student with this email already exists' })
+          }
+        })
+        .catch(err => {
+          res.json({ error: err })
+        })
+      }
+    })
+    
+})
 
 
 module.exports = instructor
