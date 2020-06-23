@@ -100,4 +100,12 @@ admin.post('/switchactive' , (req,res) => {
    })
 })
 
+admin.post('/checkReport', async (req,res) => {
+  
+})
+
+admin.post('/banInstructor', async (req,res) => {
+  
+})
+
 module.exports = admin

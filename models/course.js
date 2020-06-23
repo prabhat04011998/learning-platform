@@ -55,6 +55,9 @@ const courseSchema = new Schema({
     course_feedback:{
         type:String,
         required:false
+    },
+    students:{
+        type:[]
     }
 })
 

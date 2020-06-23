@@ -272,47 +272,8 @@ instructor.post('/addmodule' , async (req,res) => {
     
   });
   
-  // api to register student
 
-  instructor.post('/registerstudent', (req,res) => {
-
-    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-    Instructor.findOne({
-      _id: decoded._id
-    })
-    .then(instructor => { 
-      if(instructor){
-        const mystudent = req.body
-      Student.findOne({
-        email: req.body.email
-      })
-        .then(student => {
-          if (!student) {
-            bcrypt.hash(req.body.password, 10, (err, hash) => {
-              mystudent.password = hash
-              Student.create(mystudent)
-                .then(student => {
-                  res.json({ 
-                    status: 1,
-                    message: student.email + '  Registered!' 
-                  })
-                })
-                .catch(err => {
-                  res.json({ error: err })
-                })
-            })
-          } else {
-            res.json({ error: 'student with this email already exists' })
-          }
-        })
-        .catch(err => {
-          res.json({ error: err })
-        })
-      }
-    })
-    
-})
-
+  
 
 module.exports = instructor
 
