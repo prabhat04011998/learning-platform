@@ -1,0 +1,36 @@
+.trending-courses{
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.car-img{
+    width:70%;
+    height:70%;
+    border-radius: 16px;
+}
+
+.home-div{
+    width: 100%;
+}
+
+.carousel-data{
+    text-align: center;
+}
+
+.carousel-inner-data{
+    height: 350px;
+}
+
+.course-name{
+    margin-top:10px;
+}
+
+.carousel-indicators li{
+    background-color: black;
+}
+
+
+.carousel-indicators .active{
+    background-color: red;
+}

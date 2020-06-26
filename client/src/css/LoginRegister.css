@@ -1,0 +1,15 @@
+.form-container{
+    border-top: 2px solid rgb(201, 194, 194);
+    text-align: center;
+    height: 70vh;
+    display: block;
+}
+
+.login-form{
+    padding:5% 15%;
+    width: 100%;
+}
+
+.my-form{
+    padding:30px;
+}

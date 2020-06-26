@@ -1,0 +1,36 @@
+.entry-div{
+    text-align: center;
+    margin: 2% 5%;
+}
+
+.entry-container{
+    border-top: 2px solid rgb(201, 194, 194);
+}
+
+.entry-data{
+    background-color: #F46868;
+    text-align: center;
+    padding:0 40px 40px 40px;
+}
+
+.entity-img{
+    height: 10%;
+    width: 30%;
+    margin: 5% 0;
+}
+
+.data-options{
+    width: 70%;
+    height: 200px;
+    padding: 40px;
+    margin: 0 15%;
+    background-color: #FFEFEF;
+}
+
+.data-options a{
+    color: black;
+}
+
+.data-options a:hover{
+    color: #F46868;
+}

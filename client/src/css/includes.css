@@ -1,0 +1,39 @@
+.header-nav{
+    height: 10vh;
+    background-color: #B9CAF5;
+}
+.header-logo{
+    margin-left:30px;
+}
+
+.loginicon-nav{
+    margin-left: 20px;
+}
+
+.main-footer{
+    background-color: black;
+    text-align: center;
+    height: 10vh;
+    bottom: 0;
+}
+
+.footerbox a img{
+    margin-top: 1%;
+}
+
+.subheader{
+    width: 99%;
+    text-align: center;
+}
+
+.subheader-link{
+    color: black;
+}
+
+.subheader-link:hover{
+    text-decoration: none;
+}
+
+.jumboimg{
+    width: 100%;
+}

@@ -42,17 +42,29 @@ student.post('/login', (req, res) => {
             let token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 100000
             })
-            res.send("token- "+token)
+            res.json({
+              status:"1",
+              token:token
+            })
           } else {
             // Passwords don't match
-            res.json({ error: 'student does not exist' })
+            res.json({
+              status:"0",
+              message:"student does not exist"
+            })
           }
         } else {
-          res.json({ error: 'student does not exist' })
+          res.json({
+            status:"0",
+            message:"student does not exist"
+          })
         }
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({
+          status:"-1",
+          message:err
+        })
       })
   })
 
@@ -166,10 +178,11 @@ student.patch('/update' , async (req,res) => {
                 from: student.email,
                 to: instructor_email,
                 subject: 'application for course',
-                text: `student name  -${student.student_name}  student email - ${student.email}`,
+                text: `student name  -${student.student_name}  student email - ${student.email} courseName  - ${course.course_name}`,
                 html:`<h1>Details</h1><ul><li>email-${student.email} </li>
-                <li>email-${student.student_name} </li>
-                <li>email-${student.email} </li></ul>`,
+                <li>name-${student.student_name} </li>
+                <li>courseName-${course.course_name} </li>
+                <li>courseId-${course._id} </li></ul>`,
                 attachments: [
                   {   
                       filename: file.name,

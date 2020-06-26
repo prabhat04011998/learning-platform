@@ -8,9 +8,17 @@ instructor.use(fileUpload())
 var nodemailer = require('nodemailer');
 const Instructor = require('../../models/instructor');
 const Course = require('../../models/course');
+const Student = require('../../models/student');
 
 process.env.SECRET_KEY = 'secret'
-  
+  var transporter = nodemailer.createTransport({
+  host:"smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD
+  }
+});
 instructor.post('/login', (req, res) => {
     Instructor.findOne({
       email: req.body.email
@@ -28,7 +36,10 @@ instructor.post('/login', (req, res) => {
             let token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 100000
             })
-            res.send("token- "+token)
+            res.json({
+              status:"1",
+              token:token
+            })
           } else {
             // Passwords don't match
             res.json({ error: 'User does not exist' })
@@ -116,7 +127,7 @@ instructor.get('/getcourses', (req, res) => {
       })
   })
 
-  // api to update course info
+  // ------------------------------------api to update course info----------------------------------
 
 instructor.patch('/updatecourse', async (req,res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -164,7 +175,7 @@ instructor.patch('/updatecourse', async (req,res) => {
 })
 
 
-// api to let instructor delete course
+// ------------------------------api to let instructor delete course-------------------------------
 
   instructor.post('/deletecourse', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -196,7 +207,7 @@ instructor.patch('/updatecourse', async (req,res) => {
       })
   })
 
-// api to create a course module
+//--------------------------------- api to create a course module--------------------------------------
 
 instructor.post('/addmodule' , async (req,res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
@@ -229,7 +240,7 @@ instructor.post('/addmodule' , async (req,res) => {
       })
 })
 
-  // api to add data to course module 
+  // ----------------------------api to add data to course module ---------------------------------------
 
   instructor.post('/dataupload', (req, res) => {
 
@@ -272,7 +283,73 @@ instructor.post('/addmodule' , async (req,res) => {
     
   });
   
+  // ----------------------------api to approve the course request  ---------------------------------------
+instructor.post('/processRequest' , async (req,res) => {
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  
+    Instructor.findOne({
+      _id: decoded._id
+    }).then((instructor) => {
+      const objforstudent = {
+        coursename : req.body.course_name,
+        courseid : req.body.course_id,
+        paymentid : req.body.payment_id,
+        amount : req.body.amount,
+        purchase_date : new Date().toLocaleDateString(),
+        instructor_id:instructor._id
+      }
+      
+      Student.findOne({email : req.body.student_email}).then((student) => {
+        if(!student){
+          res.json({
+            status:"0",
+            message:"student's email is not valid"
+          })
+        }else{
+          student.courses.push(objforstudent)
+        student.save()
+        const objforcourse = {
+          student : student._id,
+          paymentid : req.body.payment_id,
+          amount : req.body.amount,
+          purchase_date : new Date().toLocaleDateString()
+        }
+        Course.findById(req.body.course_id).then((course) => {
+          course.students.push(objforcourse)
+          course.save()
+        })
 
+        var mailOptions = {
+          from: instructor.email,
+          to: student.email,
+          subject: 'approval for course',
+          text: `Dear student your rerquest for the course is approved and course is now activated for your id 
+          regards `,
+          html:`<h1>Details</h1><ul><li>Dear student your rerquest for the course is approved and course is now activated for your id 
+          regards</li></ul>`
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });   
+        res.json({
+          status:"1",
+          message: "done"
+        })
+
+        }
+      })   
+    }).catch((err)=>{
+      res.json({
+        status:"-1",
+        error:err
+      })
+    })
+ 
+})
   
 
 module.exports = instructor
