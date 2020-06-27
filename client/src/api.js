@@ -34,3 +34,16 @@ export const instructorlogin = user => {
         console.log(err)
       })
 }
+
+export const studentregister = newUser => {
+   return axios
+    .post('api/student/register', {
+      student_name: newUser.student_name,
+      email: newUser.email,
+      password: newUser.password,
+      contact: newUser.contact
+    })
+    .then(response => {
+      console.log('Registered')
+    })
+}

@@ -9,4 +9,5 @@ const studentapi=require('./student/studentapi')
 api.use('/admin',adminapi)
 api.use('/instructor',instructorapi)
 api.use('/student',studentapi)
+
 module.exports = api

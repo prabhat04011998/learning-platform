@@ -32,7 +32,7 @@ function Login() {
     
         studentlogin(user).then(res => {
           if (res.status == "1") {
-            history.push(`/profile`)
+            history.push(`/studentdashboard`)
           }
         })
       }

@@ -3,25 +3,38 @@ import Logo from "../images/logo.webp";
 import "../css/includes.css";
 
 const MainHeader = () => {
-  const [loggedIn, setloggedIn] = useState(false);
+  const [loggedIn, setloggedIn] = useState('');
 
   useEffect(() => {
-    const token = localStorage.usertoken;
-    if (token) {
-      setloggedIn(true);
+    const studenttoken = localStorage.studenttoken;
+    const teachertoken = localStorage.instructortoken;
+    if (studenttoken) {
+      setloggedIn('student');
+    }else if(teachertoken){
+      setloggedIn('teacher')
     }
   }, []);
 
+    
+
   function isloggedIn() {
-    if (loggedIn) {
+    if (loggedIn == 'student') {
       return (
-        <a href="/">
+        <a href="/studentdashboard">
           <button type="button" className="btn btn-default btn-lg">
             <span className="glyphicon glyphicon-search"></span> Explore
           </button>
         </a>
       );
-    } else {
+    }else if(loggedIn == 'teacher'){
+      return (
+        <a href="/instructordashboard">
+          <button type="button" className="btn btn-default btn-lg">
+            <span className="glyphicon glyphicon-search"></span> Explore
+          </button>
+        </a>
+      );
+    }else {
       return (
         <a href="/entry">
           <button type="button" className="btn btn-default btn-lg">
