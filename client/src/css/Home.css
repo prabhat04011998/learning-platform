@@ -34,3 +34,18 @@
 .carousel-indicators .active{
     background-color: red;
 }
+
+.testimonial-img{
+    height: 100px;
+    width: 100px;
+}
+
+.testimonial-box{
+    padding: 30px;
+    text-align: center;
+}
+
+.testimonials-div{
+    padding: 20px;
+    display: inline-block;
+}

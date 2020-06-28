@@ -4,6 +4,7 @@ import MainHeader from "../includes/MainHeader";
 import SubHeader from "../includes/SubHeader";
 import Footer from "../includes/Footer";
 import JUMBO from "../images/new_carousel_2.png";
+import User from '../images/userimg.png'
 import display from "../images/course-display-advertising-image.webp";
 import influence from "../images/course-influencer-marketing-image.webp";
 import seo from "../images/seo-course-image.webp";
@@ -89,6 +90,20 @@ const Home = () => {
       </div>
       <div className="trending-courses">
         <h1>Testimonials</h1>
+      </div>
+      <div className="testimonials-div" data-spy="scroll">
+          <div className="testimonial-box col-lg-4" >
+              <img src={User} className="testimonial-img" />
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+          </div>
+          <div className="testimonial-box col-lg-4" >
+              <img src={User} className="testimonial-img" />
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+          </div>
+          <div className="testimonial-box col-lg-4" >
+              <img src={User} className="testimonial-img" />
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+          </div>
       </div>
       <Footer />
     </div>

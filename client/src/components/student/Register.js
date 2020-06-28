@@ -4,7 +4,7 @@ import Footer from "../../includes/Footer";
 import SubHeader from "../../includes/SubHeader";
 import { useHistory } from "react-router-dom";
 import "../../css/LoginRegister.css";
-import {studentregister} from '../../api'
+import {studentregister} from '../../api functions/StudentFunctions'
 
 function Register() {
 

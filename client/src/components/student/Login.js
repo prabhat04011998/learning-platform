@@ -4,7 +4,7 @@ import Footer from '../../includes/Footer'
 import SubHeader from '../../includes/SubHeader'
 import { useHistory } from 'react-router-dom'
 import '../../css/LoginRegister.css'
-import { studentlogin } from '../../api'
+import { studentlogin } from '../../api functions/StudentFunctions'
 
 function Login() {
     const history= useHistory()
