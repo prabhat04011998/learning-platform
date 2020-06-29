@@ -1,9 +1,29 @@
 import axios from 'axios'
 
 
-export const allInstrcutor = user => {
+export const adminlogin = user => {
+  return axios
+    .post('api/admin/login', {
+      username: user.username,
+      password: user.password
+    })
+    .then(response => {
+        if(response.data.token){
+          localStorage.setItem('admintoken', response.data.token)
+        }
+      console.log(response.data)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const allInstrcutor = admintoken => {
     return axios
-      .post('api/admin/allinstructor')
+      .get('api/admin/allinstructor',{headers: {
+        Authorization: `${admintoken}`
+      }})
       .then(response => {
         return response.data
       })
@@ -12,9 +32,11 @@ export const allInstrcutor = user => {
       })
 }
 
-export const allStudent = user => {
+export const allStudent = admintoken => {
     return axios
-      .post('api/admin/allstudent')
+      .get('api/admin/allstudent',{headers: {
+        Authorization: `${admintoken}`
+      }})
       .then(response => {
         return response.data
       })
@@ -23,9 +45,11 @@ export const allStudent = user => {
       })
 }
 
-export const allCourse = user => {
+export const allCourse = admintoken => {
     return axios
-      .post('api/admin/allcourses')
+      .get('api/admin/allcourses',{headers: {
+        Authorization: `${admintoken}`
+      }})
       .then(response => {
         return response.data
       })
@@ -35,9 +59,11 @@ export const allCourse = user => {
 }
 
 
-export const instructorregister = newUser => {
+export const instructorregister = (newUser,admintoken) => {
     return axios
-     .post('api/admin/registerinstructor', newUser)
+     .post('api/admin/registerinstructor', newUser,{headers: {
+      Authorization: `${admintoken}`
+    }})
      .then(response => {
        console.log('Instructor Registered')
      })

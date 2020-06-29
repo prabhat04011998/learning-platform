@@ -14,7 +14,7 @@ const AdminSchema = new Schema({
   },
   isActive:{
       type:Boolean,
-      default:false
+      default:true
   }
 
 })
