@@ -6,12 +6,12 @@ function AdminSidebar() {
     <div>
       <div className="admin-panel-sidenav" id="mySidebar">
         <div className="admin-panel-sidebar-heading" id="sidebar-heading">
-          <h2 className="sidebar-list">Heading 1</h2>
+          <h2 className="sidebar-list">Instructor options</h2>
         </div>
         <div className="admin-panel-sidebar-options">
           <ul id="sidebar-options1">
             <li>
-              <a href="">options1</a>
+              <a href="/createinstructor">Create Instructor</a>
             </li>
             <hr />
             <li>

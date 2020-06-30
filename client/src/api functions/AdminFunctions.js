@@ -69,17 +69,3 @@ export const instructorregister = (newUser,admintoken) => {
      })
  }
 
-//  {
-//     "email":"veeralsharma@gmail.com",
-//     "password":"veeral",
-//     "instructor_name":"veeral",
-//     "instructor_description":"some information about our instructor",
-//     "contact":"2435324523",
-//     "profile_image":"our profile image name/link",
-//     "socialmedia_profiles":{
-//         "instagram":"xyz",
-//         "facebook":"asdfa",
-//         "linkedin":"ASdfa",
-//         "twitter":"sdfa"
-//     }
-// }
