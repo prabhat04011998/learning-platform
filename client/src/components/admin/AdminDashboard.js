@@ -5,33 +5,79 @@ import Footer from "../../includes/Footer";
 import AdminSidebar from "./AdminSidebar";
 import SubHeader from "../../includes/Subheader2";
 import {allCourse,allStudent,allInstrcutor} from '../../api functions/AdminFunctions'
+import { useHistory } from 'react-router-dom'
+import teacherimg from '../../images/teacher.png'
+import studentsimg from '../../images/student.png'
+import courseimg from '../../images/seo-course-image.webp'
+import userimg from '../../images/userimg.png'
 
 function AdminDashboard() {
+  const history= useHistory()
 
+  const [access,setAccess]= useState(false)
   const [courses,setCourses] = useState([])
   const [students,setStudents] = useState([])
   const [instructors,setInstructors] = useState([])
 
-  useEffect(() => {
-   // console.log(localStorage.admintoken);
-   allCourse(localStorage.admintoken).then((res) => {
-     setCourses(res)
+  useEffect(() => {   
+   if(localStorage.admintoken){
+     setAccess(true)
+    allCourse(localStorage.admintoken).then((res) => {
+      setCourses(res)
+    })
+    allInstrcutor(localStorage.admintoken).then((res) => {
+     setInstructors(res)
    })
-   allInstrcutor(localStorage.admintoken).then((res) => {
-    setInstructors(res)
-  })
-  allStudent(localStorage.admintoken).then((res) => {
-    setStudents(res)
-  })
+   allStudent(localStorage.admintoken).then((res) => {
+     setStudents(res)
+   })
+   }
   },[])
 
   return (
     <div>
+      {access ? (<div>
       <Header />
       <SubHeader />
       <AdminSidebar />
-      <div id="content" className="content container-fluid"></div>
+      <div id="content" className="content container-fluid">
+        <h1>Current Stats</h1>
+        <div className="stat-box">
+          <div className="stat">
+            <img src={courseimg} className="stat-img" />
+            <h3>Courses Active - {courses.length}</h3>
+          </div>
+          <div className="stat">
+            <img src={studentsimg} className="stat-img" />
+            <h3>Students Active -{students.length} </h3>
+          </div>
+          <div className="stat">
+            <img src={teacherimg} className="stat-img" />
+            <h3>instructors Active - {instructors.length}</h3>
+          </div>
+        </div>
+        <h1>Recent Updates </h1>
+        <div className="update-box">
+          <div className="update">
+            <img src={userimg} className="update-img" />
+            <h3>Commented "lorem ipsum"</h3>
+          </div>
+          <div className="update">
+            <img src={userimg} className="update-img" />
+            <h3>purchased "course A"</h3>
+          </div>
+          <div className="update">
+            <img src={userimg} className="update-img" />
+            <h3>Commented "lorem ipsum"</h3>
+          </div>
+          <div className="update">
+            <img src={userimg} className="update-img" />
+            <h3>purchased "course A"</h3>
+          </div>     
+        </div>
+      </div>
       <Footer />
+      </div>) : null}
     </div>
   );
 }

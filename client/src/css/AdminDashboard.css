@@ -1,6 +1,7 @@
 .admin-panel-sidenav {
     height: auto; 
     display: inline-block;
+    margin-top: 10px;
     width: 18%; 
     left: 0;
     float:left;
@@ -52,4 +53,44 @@
     display: inline-block;
     text-align:center;
     position:relative;
+}
+
+.stat-box{
+    background-color: #B9CAF5;
+    color: #000;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.stat{
+    width: 30%;
+    display: inline-block;
+    border-radius: 16px;
+    border: 1px solid beige;
+    padding: 2%;
+    margin: 10px;
+}
+
+.stat-img{
+    height: 150px;
+    width: 200px;
+}
+
+.update{
+    width: 20%;
+    display: inline-block;
+    border-radius: 16px;
+    border: 1px solid beige;
+    padding: 2%;
+    margin: 10px;
+}
+.update-img{
+    height: 100px;
+    width: 150px;
+}
+
+.update-box{
+    color: #000;
+    padding: 20px;
+    margin-bottom: 20px;
 }

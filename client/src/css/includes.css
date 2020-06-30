@@ -22,8 +22,9 @@
 }
 
 .subheader{
-    width: 99%;
+    width: 100%;
     text-align: center;
+    background-color: #fdfcfc;
 }
 
 .subheader-link{
@@ -36,4 +37,8 @@
 
 .jumboimg{
     width: 100%;
+}
+
+.logout{
+    margin-top: 15px;
 }
