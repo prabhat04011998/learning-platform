@@ -60,14 +60,17 @@ admin.post("/login", (req, res) => {
           });
         } else {
           // Passwords don't match
-          res.json({ error: "Admin does not exist" });
+          res.json({status:"0",
+             message: "Admin does not exist" });
         }
       } else {
-        res.json({ error: "Admin does not exist" });
+        res.json({status:"0",
+        message: "Admin does not exist" });
       }
     })
     .catch((err) => {
-      res.send("error: " + err);
+      res.json({status:"-1",
+      message: err });
     });
 });
 
@@ -207,15 +210,24 @@ admin.post("/registerinstructor", (req, res) => {
                     });
                   })
                   .catch((err) => {
-                    res.send("error: " + err);
+                    res.send({
+                      status: "-1",
+                      message: err,
+                    });
                   });
               });
             } else {
-              res.json({ error: "Instructor already exists" });
+              res.json({
+                status: "0",
+                message: instructor.email + "already exist !",
+              });
             }
           })
           .catch((err) => {
-            res.send("error: " + err);
+            res.send({
+              status: "-1",
+              message: err,
+            });
           });
       } else {
         res.json({
@@ -225,7 +237,10 @@ admin.post("/registerinstructor", (req, res) => {
       }
     })
     .catch((err) => {
-      res.send("error: " + err);
+      res.send({
+        status: "-1",
+        message: err,
+      });
     });
 });
 

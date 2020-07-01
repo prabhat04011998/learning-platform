@@ -65,7 +65,7 @@ export const instructorregister = (newUser,admintoken) => {
       Authorization: `${admintoken}`
     }})
      .then(response => {
-       console.log('Instructor Registered')
+      return response.data      
      })
  }
 

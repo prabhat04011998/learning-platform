@@ -98,3 +98,11 @@
 .instructor-register{
     margin:0 25%;
 }
+
+.error{
+    color:red;
+}
+
+.success{
+    color: green;
+}

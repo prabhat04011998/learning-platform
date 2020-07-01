@@ -8,7 +8,7 @@ import { adminlogin } from '../../api functions/AdminFunctions'
 
 function Login() {
     const history= useHistory()
-
+    const [error,setError] = useState(false)
     const [state,setState]=useState({
         username:'',
         password:''
@@ -33,6 +33,16 @@ function Login() {
         adminlogin(user).then(res => {
           if (res.status == "1") {
             history.push(`/admindashboard`)
+            setState({
+              username:'',
+              password:''
+          })
+          }else{
+              setError(true)
+              setState({
+                username:'',
+                password:''
+            })
           }
         })
       }
@@ -41,8 +51,10 @@ function Login() {
         <div>
             <Header />
             <SubHeader />
+            
            <div className="form-container">
            <div className="login-form col-lg-6 col-sm-12">
+           {error ? (<h3 className="error">invalid credentials try again</h3>) : null}
             <form noValidate onSubmit={onSubmit} className="my-form">
               <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
               <div className="form-group">
