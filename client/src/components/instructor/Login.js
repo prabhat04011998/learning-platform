@@ -7,7 +7,7 @@ import '../../css/LoginRegister.css'
 import { instructorlogin } from '../../api functions/InstructorFunctions'
 
 function Login() {
-
+  const [error,setError] = useState(false)
     const history= useHistory()
 
     const [state,setState]=useState({
@@ -34,7 +34,17 @@ function Login() {
         instructorlogin(user).then(res => {
           if (res.status == "1") {
             history.push(`/instructordashboard`)
-          }
+            setState({
+              email:'',
+              password:''
+          })
+          }else{
+            setError(true)
+            setState({
+              email:'',
+              password:''
+          })
+        }
         })
       }
 
@@ -44,6 +54,7 @@ function Login() {
             <SubHeader />
            <div className="form-container">
            <div className="login-form col-lg-6 col-sm-12">
+           {error ? (<h3 className="error">invalid credentials try again</h3>) : null}
             <form noValidate onSubmit={onSubmit} className="my-form">
               <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
               <div className="form-group">

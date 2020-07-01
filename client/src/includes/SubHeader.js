@@ -20,7 +20,7 @@ const SubHeader = () => {
                <a href="" className="subheader-link"><h3>Telemarketing</h3></a>
             </div>
             <div className="col-lg-2 col-sm-6 col-md-4">
-               <a href="" className="subheader-link"><h3>Social Marketing</h3></a>
+               <a href="/allCourses" className="subheader-link-all"><h3>All Courses</h3></a>
             </div>
             
 

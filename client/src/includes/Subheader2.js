@@ -12,7 +12,7 @@ const SubHeader2 = () => {
       }else if(window.location.pathname.includes('student')){
          localStorage.removeItem('studenttoken')
       }else if(window.location.pathname.includes('instructor')){
-         localStorage.removeItem('admintoken')
+         localStorage.removeItem('instructortoken')
       }
       history.push(`/`)
     }

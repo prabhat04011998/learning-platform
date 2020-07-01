@@ -31,6 +31,11 @@
     color: black;
 }
 
+.subheader-link-all{
+    color: red;
+}
+
+
 .subheader-link:hover{
     text-decoration: none;
 }

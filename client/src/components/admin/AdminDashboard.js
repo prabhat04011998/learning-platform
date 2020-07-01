@@ -77,7 +77,7 @@ function AdminDashboard() {
         </div>
       </div>
       <Footer />
-      </div>) : null}
+      </div>) : (<div className="accessdenied"><h2>Acess denied</h2></div>)}
     </div>
   );
 }
