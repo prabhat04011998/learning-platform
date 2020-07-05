@@ -18,3 +18,29 @@ export const instructorlogin = user => {
         console.log(err)
       })
 }
+
+export const getAllCourse = instructortoken => {
+    return axios
+      .get('api/instructor/getcourses',{headers: {
+        Authorization: `${instructortoken}`
+      }})
+      .then(response => {
+        return response.data.message
+      })
+      .catch(err => {
+        console.log(err)
+      })
+}
+
+export const makeCourse = (course,instructortoken) => {
+  return axios
+    .get('api/instructor/makecourse',course,{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

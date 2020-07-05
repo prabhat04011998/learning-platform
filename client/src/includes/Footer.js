@@ -5,8 +5,8 @@ import '../css/includes.css'
 
 const Footer = () => {
     return (
-        <footer class="main-footer">
-            <div class="footerbox">
+        <footer className="main-footer">
+            <div className="footerbox">
             <a  href="/"><img src={Logo}  /></a>
             </div>
         </footer>

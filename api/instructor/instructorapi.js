@@ -85,17 +85,29 @@ instructor.post('/makecourse', async (req, res) => {
           course.instructor_id=decoded._id
           await course.save((err) => {
             if(err){
-                res.send(err)
+                res.json({
+                  status:"-1",
+                  message:err
+                })
             }else{
-                return res.status(200).json('course made successfully')
+                return res.json({
+                    status:"1",
+                    message:"course made successfully"
+                })
             }
         })
         } else {
-          res.send('instructor does not exist')
+          res.json({
+            status:"0",
+            message:"instructor not found"
+          })
         }
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({
+          status:"-1",
+          message:err
+        })
       })
   })
 
@@ -113,17 +125,29 @@ instructor.get('/getcourses', (req, res) => {
            instructor_id:instructor._id
          }).then(courses => {
            if(courses.length > 0){
-              res.send(courses)
+              res.json({
+                status:"1",
+                message:courses
+              })
            }else{
-              res.send('no courses for the user')
+              res.json({
+                status:"0",
+                message:"no courses for instructor "
+              })
            }
          })
         } else {
-          res.send('instructor does not exist')
+          res.json({
+            status:"0",
+            message:"instructor not found"
+          })
         }
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({
+          status:"-1",
+          message:err
+        })
       })
   })
 

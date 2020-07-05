@@ -11,6 +11,8 @@ import AdminDashboard from './components/admin/AdminDashboard'
 import InstructorDashboard from './components/instructor/InstructorDashboard'
 import StudentDashboard from './components/student/StudentDashboard'
 import CreateInstructor from './components/admin/CreateInstructor'
+import MakeCourse from './components/instructor/MakeCourse'
+import InstructorCourses from './components/instructor/InstructorCourses'
 
 function App() {
  return(
@@ -26,7 +28,8 @@ function App() {
      <Route exact path="/studentregister" component={StudentRegister} />
      <Route exact path="/instructorlogin" component={InstructorLogin} />
      <Route exact path="/createinstructor" component={CreateInstructor} />
-     
+     <Route exact path="/instructorcourses" component={InstructorCourses} />
+     <Route exact path="/makecourse" component={MakeCourse} />
      </div>
      </Router>
  )

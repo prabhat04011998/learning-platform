@@ -5,15 +5,12 @@ import Footer from "../../includes/Footer";
 import AdminSidebar from "./AdminSidebar";
 import SubHeader from "../../includes/Subheader2";
 import {allCourse,allStudent,allInstrcutor} from '../../api functions/AdminFunctions'
-import { useHistory } from 'react-router-dom'
 import teacherimg from '../../images/teacher.png'
 import studentsimg from '../../images/student.png'
 import courseimg from '../../images/seo-course-image.webp'
 import userimg from '../../images/userimg.png'
 
 function AdminDashboard() {
-  const history= useHistory()
-
   const [access,setAccess]= useState(false)
   const [courses,setCourses] = useState([])
   const [students,setStudents] = useState([])
@@ -77,7 +74,7 @@ function AdminDashboard() {
         </div>
       </div>
       <Footer />
-      </div>) : (<div className="accessdenied"><h2>Acess denied</h2></div>)}
+      </div>) : (window.location.href='/adminlogin')}
     </div>
   );
 }

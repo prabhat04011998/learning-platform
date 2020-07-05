@@ -1,13 +1,11 @@
 import React, { useState, useEffect }  from "react";
 import "../../css/InstructorDashboard.css";
 import Header from "../../includes/Header2";
-import AdminSidebar from "./InstructorSidebar";
 import Footer from "../../includes/Footer";
 import SubHeader from "../../includes/Subheader2";
 import studentsimg from '../../images/student.png'
 import courseimg from '../../images/seo-course-image.webp'
 import userimg from '../../images/userimg.png'
-import { useHistory } from 'react-router-dom'
 import InstructorSidebar from "./InstructorSidebar";
 
 function InstructorDashboard() {
