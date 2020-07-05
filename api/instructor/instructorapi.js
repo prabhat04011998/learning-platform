@@ -55,7 +55,7 @@ instructor.post('/login', (req, res) => {
 
 // api to update instructors details
 
-instructor.patch('/update' , async (req,res) => {
+instructor.put('/update' , async (req,res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   Instructor.findOneAndUpdate( decoded._id  , req.body , function (err , course) {
     if (!course){

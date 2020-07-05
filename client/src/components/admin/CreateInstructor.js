@@ -9,8 +9,8 @@ import { instructorregister } from "../../api functions/AdminFunctions";
 
 function CreateInstructor() {
   const history = useHistory();
-  const [error, setError] = useState(false);
-  const [register, setRegister] = useState("");
+  const [error, setError] = useState("");
+  const [register, setRegister] = useState(false);
   const [state, setState] = useState({
     email: "",
     password: "",

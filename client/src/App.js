@@ -29,7 +29,7 @@ function App() {
      <Route exact path="/instructorlogin" component={InstructorLogin} />
      <Route exact path="/createinstructor" component={CreateInstructor} />
      <Route exact path="/instructorcourses" component={InstructorCourses} />
-     <Route exact path="/makecourse" component={MakeCourse} />
+     <Route exact path="/instructormakecourse" component={MakeCourse} />
      </div>
      </Router>
  )

@@ -34,10 +34,12 @@ export const getAllCourse = instructortoken => {
 
 export const makeCourse = (course,instructortoken) => {
   return axios
-    .get('api/instructor/makecourse',course,{headers: {
+    .post('api/instructor/makecourse',course,{headers: {
       Authorization: `${instructortoken}`
     }})
     .then(response => {
+      ;
+      
       return response.data
     })
     .catch(err => {

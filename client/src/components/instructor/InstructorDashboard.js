@@ -9,16 +9,10 @@ import userimg from '../../images/userimg.png'
 import InstructorSidebar from "./InstructorSidebar";
 
 function InstructorDashboard() {
-    const [access,setAccess]= useState(false)
-    useEffect(() => {   
-        if(localStorage.instructortoken){
-          setAccess(true)
-        }
-       },[])
 
   return (
     <div>
-    {access ? (<div>
+    {localStorage.instructortoken ? (<div>
       <Header />
       <SubHeader />
         <InstructorSidebar />
@@ -56,7 +50,7 @@ function InstructorDashboard() {
             
         </div>
       <Footer />
-    </div>) : (<div className="accessdenied"><h2>Acess denied</h2></div>)}
+    </div>) : (window.location.href='/instructorlogin')}
     </div>
     
   );

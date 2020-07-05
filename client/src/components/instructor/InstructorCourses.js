@@ -10,10 +10,8 @@ import { getAllCourse } from "../../api functions/InstructorFunctions";
 
 function InstructorCourses() {
   const [courses, setCourses] = useState([]);
-  const [access, setAccess] = useState(false);
   useEffect(() => {
     if (localStorage.instructortoken) {
-      setAccess(true);
       getAllCourse(localStorage.instructortoken).then((res) => {
         setCourses(res);
       });
@@ -23,7 +21,7 @@ function InstructorCourses() {
 
   return (
     <div>
-      {access ? (
+      {localStorage.instructortoken ? (
         <div>
           <Header />
           <SubHeader />
@@ -82,9 +80,7 @@ function InstructorCourses() {
           <Footer />
         </div>
       ) : (
-        <div className="accessdenied">
-          <h2>Acess denied</h2>
-        </div>
+        window.location.href='/instructorlogin'
       )}
     </div>
   );

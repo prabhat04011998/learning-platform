@@ -19,3 +19,14 @@
     margin-bottom: 40px;
     height: 50vh;
 }
+.tags{
+    display: inline-block;
+}
+
+.sbt-btn{
+    margin-top: 50px;
+}
+
+.add-btn{
+    margin-top: 50px;
+}

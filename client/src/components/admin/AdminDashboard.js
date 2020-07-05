@@ -11,14 +11,13 @@ import courseimg from '../../images/seo-course-image.webp'
 import userimg from '../../images/userimg.png'
 
 function AdminDashboard() {
-  const [access,setAccess]= useState(false)
   const [courses,setCourses] = useState([])
   const [students,setStudents] = useState([])
   const [instructors,setInstructors] = useState([])
 
   useEffect(() => {   
    if(localStorage.admintoken){
-     setAccess(true)
+
     allCourse(localStorage.admintoken).then((res) => {
       setCourses(res)
     })
@@ -33,7 +32,7 @@ function AdminDashboard() {
 
   return (
     <div>
-      {access ? (<div>
+      {localStorage.admintoken ? (<div>
       <Header />
       <SubHeader />
       <AdminSidebar />
