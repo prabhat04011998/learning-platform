@@ -103,7 +103,8 @@ function CreateInstructor() {
   }
 
   return (
-    <div>
+   <div>
+      {localStorage.admintoken ? (<div>
       <Header />
       <SubHeader />
       <AdminSidebar />
@@ -222,7 +223,9 @@ function CreateInstructor() {
         </div>
       </div>
       <Footer />
-    </div>
+    </div>) : (window.location.href='/adminlogin')}
+   </div>
+    
   );
 }
 

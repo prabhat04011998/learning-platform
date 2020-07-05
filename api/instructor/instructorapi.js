@@ -31,7 +31,10 @@ instructor.post('/login', (req, res) => {
               _id: instructor._id,
               instructor_name: instructor.instructor_name,
               contact: instructor.contact,
-              email: instructor.email
+              email: instructor.email,
+              instructor_description:instructor.instructor_description,
+              socialmedia_profiles:instructor.socialmedia_profiles,
+              profile_image:instructor.profile_image
             }
             let token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 100000
@@ -57,17 +60,24 @@ instructor.post('/login', (req, res) => {
 
 instructor.put('/update' , async (req,res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-  Instructor.findOneAndUpdate( decoded._id  , req.body , function (err , course) {
-    if (!course){
+  Instructor.findOneAndUpdate( decoded._id  , req.body , function (err , instructor) {
+    if(err){
       res.json({
-          status: "0",
-          msg: "Instructor not found"
-      })
-    }else {
-      res.status(200).json({
-          msg: "Instructor updated successfully",
-          status: "1"
-      });
+        status: "-1",
+        message: err
+    })
+    }else{
+      if (!instructor){
+        res.json({
+            status: "0",
+            message: "Instructor not found"
+        })
+      }else {
+        res.status(200).json({
+            message: "Instructor updated successfully",
+            status: "1"
+        });
+      }
     }
  })
 })

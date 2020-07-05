@@ -55,6 +55,10 @@
     position:relative;
 }
 
+.sbt-btn{
+    margin-top: 50px;
+}
+
 .stat-box{
     background-color: #B9CAF5;
     color: #000;

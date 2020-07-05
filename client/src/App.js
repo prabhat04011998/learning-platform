@@ -13,6 +13,7 @@ import StudentDashboard from './components/student/StudentDashboard'
 import CreateInstructor from './components/admin/CreateInstructor'
 import MakeCourse from './components/instructor/MakeCourse'
 import InstructorCourses from './components/instructor/InstructorCourses'
+import EditInstructor from './components/instructor/EditProfile'
 
 function App() {
  return(
@@ -30,6 +31,7 @@ function App() {
      <Route exact path="/createinstructor" component={CreateInstructor} />
      <Route exact path="/instructorcourses" component={InstructorCourses} />
      <Route exact path="/instructormakecourse" component={MakeCourse} />
+     <Route exact path="/instructoredit" component={EditInstructor} />
      </div>
      </Router>
  )
