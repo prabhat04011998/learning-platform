@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import InstructorSidebar from "./InstructorSidebar";
 import SubHeader from "../../includes/Subheader2";
 import "../../css/InstructorDashboard.css";
-import {editProfile} from '../../api functions/InstructorFunctions'
+import {editProfile,fetchProfile} from '../../api functions/InstructorFunctions'
 
 
 function EditProfile() {
@@ -38,7 +38,7 @@ function EditProfile() {
             linkedin: decoded.socialmedia_profiles.linkedin,
             twitter: decoded.socialmedia_profiles.twitter,
         })
-        
+
       },[])
 
       function onSubmit(e) {

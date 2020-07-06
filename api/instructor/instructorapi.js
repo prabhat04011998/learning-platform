@@ -81,6 +81,34 @@ instructor.put('/update' , async (req,res) => {
     }
  })
 })
+///////////////////// api to fetch instructor details //////////////
+
+instructor.post('/fetch' , async (req,res) => {
+  var decoded = jwt.verify(req.headers['Authorization'], process.env.SECRET_KEY)
+  Instructor.findById( decoded._id , function (err , instructor) {
+    if(err){
+      res.json({
+        status: "-1",
+        message: err
+    })
+    }else{
+      if (!instructor){
+        res.json({
+            status: "0",
+            message: "Instructor not found"
+        })
+      }else {
+        res.status(200).json({
+            message: instructor,
+            status: "1"
+        });
+      }
+    }
+ })
+})
+
+
+
 // api to make courses
   
 instructor.post('/makecourse', async (req, res) => {

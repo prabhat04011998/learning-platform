@@ -45,6 +45,19 @@ export const makeCourse = (course,instructortoken) => {
     })
 }
 
+export const fetchProfile = instructortoken => { 
+  return axios
+    .post('api/instructor/fetch',{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const editProfile = (instructor,instructortoken) => {
   return axios
     .put('api/instructor/update',instructor,{headers: {
