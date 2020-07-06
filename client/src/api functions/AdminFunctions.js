@@ -47,9 +47,7 @@ export const allStudent = admintoken => {
 
 export const allCourse = admintoken => {
     return axios
-      .get('api/admin/allcourses',{headers: {
-        Authorization: `${admintoken}`
-      }})
+      .get('api/admin/allcourses')
       .then(response => {
         return response.data
       })

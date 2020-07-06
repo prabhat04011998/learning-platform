@@ -7,8 +7,21 @@ import studentsimg from '../../images/student.png'
 import courseimg from '../../images/seo-course-image.webp'
 import userimg from '../../images/userimg.png'
 import InstructorSidebar from "./InstructorSidebar";
+import {fetchProfile} from '../../api functions/InstructorFunctions'
 
 function InstructorDashboard() {
+
+  const [instructor,setInstructor] = useState({})
+
+  useEffect(() => {
+    async function two(){     
+      await fetchProfile(localStorage.instructortoken).then((res)=>{
+        setInstructor(res.message)
+      })   
+    }
+    two()
+  })
+  
 
   return (
     <div>
@@ -17,6 +30,7 @@ function InstructorDashboard() {
       <SubHeader />
         <InstructorSidebar />
         <div id="content" className="content container-fluid">
+        <div><h1> Welcome {instructor.instructor_name}</h1></div>
         <h1>Current Stats</h1>
         <div className="stat-box">
           <div className="stat">

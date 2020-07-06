@@ -10,10 +10,14 @@ import InstructorLogin from './components/instructor/Login'
 import AdminDashboard from './components/admin/AdminDashboard'
 import InstructorDashboard from './components/instructor/InstructorDashboard'
 import StudentDashboard from './components/student/StudentDashboard'
+import StudentCourses from './components/student/MyCourse'
+import RequestCourse from './components/student/RequestCourse'
+import CoursePage from './components/student/CoursePage'
 import CreateInstructor from './components/admin/CreateInstructor'
 import MakeCourse from './components/instructor/MakeCourse'
 import InstructorCourses from './components/instructor/InstructorCourses'
 import EditInstructor from './components/instructor/EditProfile'
+import MyCourse from './components/student/MyCourse';
 
 function App() {
  return(
@@ -32,6 +36,9 @@ function App() {
      <Route exact path="/instructorcourses" component={InstructorCourses} />
      <Route exact path="/instructormakecourse" component={MakeCourse} />
      <Route exact path="/instructoredit" component={EditInstructor} />
+     <Route exact path="/studentcourses" component={MyCourse} />
+     <Route exact path="/studentrequestcourse" component={RequestCourse} />
+     <Route exact path="/studentcoursepage" component={CoursePage} />
      </div>
      </Router>
  )

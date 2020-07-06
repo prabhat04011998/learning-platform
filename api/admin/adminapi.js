@@ -147,39 +147,28 @@ admin.get("/allstudent", async (req, res) => {
 });
 
 admin.get("/allcourses", async (req, res) => {
-  var decoded = jwt.verify(
-    req.headers["authorization"],
-    process.env.SECRET_KEY
-  );
-
-  Admin.findOne({
-    _id: decoded._id,
-  })
-    .then((admin) => {
-      if (admin) {
-        Course.find()
+  Course.find()
           .then((courses) => {
             if (courses) {
               if (courses.length == 0) {
-                res.send("no courses present");
+                res.json({
+                  status:"0",
+                  message:"no courses"
+                });
               } else {
-                res.status(200).send(courses);
+                res.status(200).json({
+                  status:"1",
+                  message:courses
+                });
               }
             }
           })
           .catch((err) => {
-            res.send("error: " + err);
+            res.json({
+              status:"-1",
+              message:err
+            });
           });
-      } else {
-        res.json({
-          status: "0",
-          message: "instructor does not exist",
-        });
-      }
-    })
-    .catch((err) => {
-      res.send("error: " + err);
-    });
 });
 
 admin.post("/registerinstructor", (req, res) => {

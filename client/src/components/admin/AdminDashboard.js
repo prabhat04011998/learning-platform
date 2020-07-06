@@ -19,7 +19,7 @@ function AdminDashboard() {
    if(localStorage.admintoken){
 
     allCourse(localStorage.admintoken).then((res) => {
-      setCourses(res)
+      setCourses(res.message)
     })
     allInstrcutor(localStorage.admintoken).then((res) => {
      setInstructors(res)

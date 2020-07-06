@@ -5,7 +5,7 @@ import SubHeader from "../../includes/Subheader2";
 import StudentSidebar from './StudentSidebar'
 import "../../css/InstructorDashboard.css";
 
-function StudentDashboard() {
+function CoursePage() {
     return (
         <div>
             <Header />
@@ -22,4 +22,4 @@ function StudentDashboard() {
     )
 }
 
-export default StudentDashboard
+export default CoursePage

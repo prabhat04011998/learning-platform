@@ -11,3 +11,5 @@ improvement
 5-activity tracking 
 
 6-elastic search integration
+
+7-check welcome in instructor dashboard
