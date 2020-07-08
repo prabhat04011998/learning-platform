@@ -9,7 +9,7 @@ var nodemailer = require('nodemailer');
 const Instructor = require('../../models/instructor');
 const Course = require('../../models/course');
 const Student = require('../../models/student');
-
+instructor.use(cors())
 process.env.SECRET_KEY = 'secret'
   var transporter = nodemailer.createTransport({
   host:"smtp.mailtrap.io",
@@ -30,11 +30,7 @@ instructor.post('/login', (req, res) => {
             const payload = {
               _id: instructor._id,
               instructor_name: instructor.instructor_name,
-              contact: instructor.contact,
               email: instructor.email,
-              instructor_description:instructor.instructor_description,
-              socialmedia_profiles:instructor.socialmedia_profiles,
-              profile_image:instructor.profile_image
             }
             let token = jwt.sign(payload, process.env.SECRET_KEY, {
               expiresIn: 100000
@@ -83,8 +79,8 @@ instructor.put('/update' , async (req,res) => {
 })
 ///////////////////// api to fetch instructor details //////////////
 
-instructor.post('/fetch' , async (req,res) => {
-  var decoded = jwt.verify(req.headers['Authorization'], process.env.SECRET_KEY)
+instructor.get('/fetch' , async (req,res) => {   
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   Instructor.findById( decoded._id , function (err , instructor) {
     if(err){
       res.json({
@@ -104,6 +100,13 @@ instructor.post('/fetch' , async (req,res) => {
         });
       }
     }
+ })
+ .catch((Err) => {
+   console.log(err);
+   res.json({
+    status: "-1",
+    message: err
+})
  })
 })
 

@@ -68,6 +68,38 @@ student.post('/login', (req, res) => {
       })
   })
 
+  //--------------------------------fetch student ------------------------------///
+  
+student.get('/fetch' , async (req,res) => {  
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  Student.findById( decoded._id , function (err , student) {
+    if(err){
+      res.json({
+        status: "-1",
+        message: err
+    })
+    }else{
+      if (!student){
+        res.json({
+            status: "0",
+            message: "Instructor not found"
+        })
+      }else {
+        res.status(200).json({
+            message: student,
+            status: "1"
+        });
+      }
+    }
+ })
+ .catch((Err) => {
+   console.log(err);
+   res.json({
+    status: "-1",
+    message: err
+})
+ })
+})
 
   // --------------------------student registration api -------------------------
 

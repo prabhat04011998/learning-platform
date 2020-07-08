@@ -26,19 +26,22 @@ function EditProfile() {
       });
 
       useEffect(() => {
-        var decoded= jwt_decode(localStorage.instructortoken)
-        setState({
-            email:decoded.email,
-            instructor_name:decoded.instructor_name,
-            instructor_description:decoded.instructor_description,
-            contact:decoded.contact,
-            profile_image:decoded.profile_image,
-            instagram: decoded.socialmedia_profiles.instagram,
-            facebook: decoded.socialmedia_profiles.facebook,
-            linkedin: decoded.socialmedia_profiles.linkedin,
-            twitter: decoded.socialmedia_profiles.twitter,
+        fetchProfile(localStorage.instructortoken).then((res) => {
+          console.log(res);
+          setState({
+            email:res.message.email,
+            instructor_name:res.message.instructor_name,
+            instructor_description:res.message.instructor_description,
+            contact:res.message.contact,
+            profile_image:res.message.profile_image,
+            instagram: res.message.socialmedia_profiles.instagram,
+            facebook: res.message.socialmedia_profiles.facebook,
+            linkedin: res.message.socialmedia_profiles.linkedin,
+            twitter: res.message.socialmedia_profiles.twitter,
         })
-
+        }).catch((err) => {
+          console.log(err); 
+        })
       },[])
 
       function onSubmit(e) {

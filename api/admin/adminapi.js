@@ -110,7 +110,7 @@ admin.get("/allinstructor", async (req, res) => {
     });
 });
 
-admin.get("/allstudent", async (req, res) => {
+admin.get("/allstudent", async (req, res) => { 
   var decoded = jwt.verify(
     req.headers["authorization"],
     process.env.SECRET_KEY

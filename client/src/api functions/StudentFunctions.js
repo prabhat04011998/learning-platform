@@ -19,6 +19,20 @@ export const studentlogin = user => {
       })
 }
 
+export const fetchProfile = studenttoken => {
+  return axios
+    .get('api/student/fetch',{headers: {
+      Authorization: `${studenttoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+
 
 export const studentregister = newUser => {
    return axios

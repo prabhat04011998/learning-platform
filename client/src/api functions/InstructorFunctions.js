@@ -46,8 +46,9 @@ export const makeCourse = (course,instructortoken) => {
 }
 
 export const fetchProfile = instructortoken => { 
+  console.log(instructortoken);
   return axios
-    .post('api/instructor/fetch',{headers: {
+    .get('api/instructor/fetch',{headers: {
       Authorization: `${instructortoken}`
     }})
     .then(response => {
