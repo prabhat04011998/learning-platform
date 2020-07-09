@@ -137,7 +137,7 @@ student.get('/fetch' , async (req,res) => {
 
 // ----------------------------update student details-------------------------------
   
-student.patch('/update' , async (req,res) => {
+student.put('/update' , async (req,res) => {
 
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   Student.findOneAndUpdate( decoded._id  , req.body , function (err ,student) {

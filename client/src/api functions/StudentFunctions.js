@@ -19,6 +19,19 @@ export const studentlogin = user => {
       })
 }
 
+export const editProfile = (student,studenttoken) => {
+  return axios
+    .put('api/student/update',student,{headers: {
+      Authorization: `${studenttoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const fetchProfile = studenttoken => {
   return axios
     .get('api/student/fetch',{headers: {

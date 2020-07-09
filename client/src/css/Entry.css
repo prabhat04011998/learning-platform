@@ -34,3 +34,22 @@
 .data-options a:hover{
     color: #F46868;
 }
+
+
+/* all courses */
+
+.allcourses{
+    padding: 100px;
+    text-align: center;
+}
+
+.course-card-body{
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    margin:10px 40px 20px 40px;
+}
+
+.course-card-img{
+    width: 90%;
+}

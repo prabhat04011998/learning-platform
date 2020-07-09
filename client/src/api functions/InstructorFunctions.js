@@ -59,6 +59,19 @@ export const fetchProfile = instructortoken => {
     })
 }
 
+export const fetchBasicProfile = id => { 
+  return axios
+    .post('api/instructor/fetchbasic',{
+      instructor_id:id
+    })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const editProfile = (instructor,instructortoken) => {
   return axios
     .put('api/instructor/update',instructor,{headers: {

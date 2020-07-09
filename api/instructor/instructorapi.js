@@ -110,7 +110,43 @@ instructor.get('/fetch' , async (req,res) => {
  })
 })
 
+/////--------------api to get basic details of instructor------------------//////
 
+instructor.post('/fetchbasic' , async (req,res) => {   
+  
+  Instructor.findById( req.body.instructor_id , function (err , instructor) {
+    if(err){
+      res.json({
+        status: "-1",
+        message: err
+    })
+    }else{
+      if (!instructor){
+        res.json({
+            status: "0",
+            message: "Instructor not found"
+        })
+      }else {
+        const data = {
+          name:instructor.instructor_name,
+          email:instructor.email,
+          details:instructor.instructor_description
+        }
+        res.status(200).json({
+            message: data,
+            status: "1"
+        });
+      }
+    }
+ })
+ .catch((Err) => {
+   console.log(err);
+   res.json({
+    status: "-1",
+    message: err
+})
+ })
+})
 
 // api to make courses
   

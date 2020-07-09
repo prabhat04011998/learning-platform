@@ -36,7 +36,7 @@ function MyCourse() {
               <div className="mycourse">
                 <img src={courseimg} alt="" className="course-img" />
                  <h3>{c.coursename}</h3>
-                 <button className="btn btn-danger btn-lg" onClick={handlervisit(c.coursename)}>Go To course</button>
+                 <button type='button' className="btn btn-danger btn-lg" onClick={handlervisit(c.coursename)}>Go To course</button>
               </div>
             )
           })}
