@@ -56,6 +56,19 @@ export const allCourse = admintoken => {
       })
 }
 
+export const GetACourse = (id) => {
+  return axios
+    .post('api/admin/getcourse',{
+      course_id:id
+    })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 
 export const instructorregister = (newUser,admintoken) => {
     return axios

@@ -129,7 +129,7 @@ instructor.post('/fetchbasic' , async (req,res) => {
       }else {
         const data = {
           name:instructor.instructor_name,
-          email:instructor.email,
+          contact:instructor.contact,
           details:instructor.instructor_description
         }
         res.status(200).json({

@@ -29,7 +29,7 @@ function StudentSidebar() {
               </li>
               <hr />
               <li>
-                <a href="/">option 2</a>
+                <a href="/studentRequestAccess">Request Access</a>
               </li>
               <hr />
               <li>

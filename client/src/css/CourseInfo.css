@@ -1,0 +1,38 @@
+/*-----------------------seo div -------------------*/
+
+.seo-div{
+    display: inline-block;
+    text-align: center;
+    padding: 50px;
+}
+
+.courseImage{
+    width: 80%;
+    height: 40vh;
+}
+
+.register-instructions{
+    background-color: rgb(180, 248, 226);
+    padding: 40px;
+    border-radius: 24px;
+}
+
+.ins-list{
+    text-align: left;
+font-size: 2rem;
+margin-left: 30%;
+}
+
+
+.ins-details{
+    background-color: rgb(218, 216, 216);
+    border: 0.4px solid rgb(182, 182, 182);
+    border-radius: 24px;
+}
+
+.requestbtn{
+    margin: 40px 0;
+}
+.requestbtn-a{
+    color: white;
+}

@@ -171,6 +171,29 @@ admin.get("/allcourses", async (req, res) => {
           });
 });
 
+admin.post("/getcourse" , async (req,res) => {
+  Course.findById(req.body.course_id,(err,course) => {
+    if(!err){
+      if(course){
+        res.json({
+          status:"1",
+          message:course
+        })
+      }else{
+        res.json({
+          status:"0",
+          message:"no course"
+        })
+      }
+    }else{
+      res.json({
+        status:"-1",
+        message:err
+      })
+    }
+  })
+})
+
 admin.post("/registerinstructor", (req, res) => {
   var decoded = jwt.verify(
     req.headers["authorization"],
