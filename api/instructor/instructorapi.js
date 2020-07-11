@@ -230,7 +230,7 @@ instructor.get('/getcourses', (req, res) => {
 
   // ------------------------------------api to update course info----------------------------------
 
-instructor.patch('/updatecourse', async (req,res) => {
+instructor.put('/updatecourse', async (req,res) => {
   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   
     Instructor.findOne({
@@ -238,22 +238,7 @@ instructor.patch('/updatecourse', async (req,res) => {
     })
       .then(instructor => {
         if (instructor) {
-          if (req.body['courseid']){
-            delete req.body.feed_id;
-          }
-          if (req.body['_id']){
-            delete req.body._id;
-          }
-          var queryValue =  req.query.courseid 
-          if(!queryValue || Object.keys(req.body).length === 0){
-              console.log("empty query parmas or request body is empty");
-              res.json({
-                  status: "0",
-                  msg: "empty query parmas or request body is empty"
-              });
-              return;
-          }
-          Course.findOneAndUpdate( {_id : queryValue}  , req.body , function (err , course) {
+          Course.findOneAndUpdate( {_id : req.body._id}  , req.body , function (err , course) {
             if (!course){
               res.json({
                   status: "0",
@@ -267,11 +252,17 @@ instructor.patch('/updatecourse', async (req,res) => {
             }
          })
          } else {
-          res.send('instructor does not exist')
+          res.json({
+            status:"0",
+            message:"no instructor"
+          })
         }
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({
+          status:"-1",
+          message:err
+        })
       })
 })
 
@@ -327,17 +318,29 @@ instructor.post('/addmodule' , async (req,res) => {
             if(course){
               course.modules.push(mymodule)
               course.save()             
-              res.status(200).send('module added successfully')
+              res.status(200).json({
+                status:"1",
+                message:"module added successfully"
+              })
             }else{
-              res.send('no course found with matching id')
+              res.json({
+                status:"0",
+                message:"no course with matching id "
+              })
             }
           })
         } else {
-          res.send('instructor does not exist')
+          res.json({
+            status:"0",
+            message:"no instructor with matching id "
+          })
         }
       })
       .catch(err => {
-        res.send('error: ' + err)
+        res.json({
+          status:"-1",
+          message:err
+        })
       })
 })
 

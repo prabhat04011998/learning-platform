@@ -12,13 +12,7 @@
     width: 80%;
 }
 
-.card{
-    border:0.5px solid grey;
-    display: inline-block;
-    padding: 10px;
-    margin-bottom: 40px;
-    height: 50vh;
-}
+
 .tags{
     display: inline-block;
 }
@@ -29,4 +23,43 @@
 
 .add-btn{
     margin-top: 50px;
+}
+
+.contain-card{
+    width: 30%;
+    display: inline-block;
+    margin: 20px;
+    border:0.5px solid grey;
+    padding: 10px;
+}
+
+.opt-btn{
+    margin:20px;
+}
+
+/*-------------------------add module css --------------------*/
+
+.addmodule{
+    width: 80%;
+    text-align: center;
+    padding:40px;
+    display: inline-block;
+}
+
+.addModuleinfo{
+    background-color: beige;
+    padding: 20px;
+    border-radius: 24px;
+    border: 0.5px solid grey;
+    margin: 30px 0;
+}
+
+.addmodule-pic{
+    width: 70%;
+    height: 30vh;
+}
+
+.name-module{
+    width: 70%;
+    margin-left: 15%;
 }

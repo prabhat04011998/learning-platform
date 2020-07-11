@@ -6,16 +6,15 @@ import { GetACourse } from "../../api functions/AdminFunctions";
 import { fetchBasicProfile } from "../../api functions/InstructorFunctions";
 import courseimg from "../../images/seo-course-image.webp";
 import "../../css/CourseInfo.css";
-import { useLocation } from "react-router-dom";
-import { set } from "mongoose";
+import { useParams } from "react-router-dom";
 
 function CourseDescription() {
   const [course, setCourse] = useState({});
   const [instructor,setInstructor]=useState({});
-  const Location = useLocation();
+  const {id} = useParams()
   useEffect(() => {
     async function setState(){
-        await GetACourse(Location.id).then((res) => {
+        await GetACourse(id).then((res) => {         
             setCourse(res.message)  
             fetchBasicProfile(res.message.instructor_id).then((res)=>{
                 setInstructor(res.message)

@@ -18,11 +18,10 @@ function AllCourses() {
     });
   }, []);
 
-  function gotocourse(name,courseid){
-    var link=name.split(" ").join("")
+  function gotocourse(courseid){
+    var link='CourseDescription'+courseid
     history.push({
-      pathname: 'CourseDescription',
-      id: courseid,
+      pathname:link 
     });
   }
 
@@ -41,7 +40,7 @@ function AllCourses() {
               <button
                 type="button"
                 className="btn btn-danger btn-lg"
-                onClick={() =>{gotocourse(c.course_name,c._id)}}
+                onClick={() =>{gotocourse(c._id)}}
               >
                 Go To course
               </button>

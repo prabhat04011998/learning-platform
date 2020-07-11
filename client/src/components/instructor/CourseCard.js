@@ -1,5 +1,7 @@
 import "../../css/InstructorCourses.css";
-import React from "react";
+import React, { useEffect } from "react";
+import EditCourse from "./EditCourse";
+
 
 function CourseCard({
   name,
@@ -8,10 +10,13 @@ function CourseCard({
   price,
   courseimage,
   numstudents,
+  handleEdit,
+  handleModule
 }) {
+
+
   return (
-    <div className='col-lg-4 col-md-6 col-sm-12'>
-      <div className="card">
+    <div className=' contain-card'>
         <img className="card-img-top" src={courseimage} alt="Card image cap" />
         <div class="card-body">
           <h3 class="card-title">{name}</h3>
@@ -24,7 +29,9 @@ function CourseCard({
             number of students enrolled - {numstudents}
           </li>
         </ul>
-      </div>
+        <button className = 'btn btn-primary opt-btn' onClick={() => {handleEdit()}}>Edit</button>
+        <button className='btn btn-danger opt-btn'>delete</button>
+        <button className='btn btn-primary' onClick={() => {handleModule()}}>Add Module</button>
     </div>
   );
 }

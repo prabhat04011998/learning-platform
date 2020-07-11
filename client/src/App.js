@@ -21,6 +21,8 @@ import MyCourse from './components/student/MyCourse';
 import StudentEdit from './components/student/StudentEdit'
 import AllCourses from './components/AllCourses'
 import CourseDescription from './components/Course Info/CourseDescription'
+import EditCourse from './components/instructor/EditCourse';
+import AddModule from './components/instructor/AddModule'
 
 function App() {
  return(
@@ -44,7 +46,9 @@ function App() {
      <Route exact path="/studentcoursepage" component={CoursePage} />
      <Route exact path="/studentedit" component={StudentEdit} />
      <Route exact path="/allCourses" component={AllCourses} />
-     <Route exact path="/CourseDescription" component={CourseDescription} />
+     <Route exact path="/CourseDescription:id" component={CourseDescription} />
+     <Route exact path="/editCourse:id" component={EditCourse} />
+     <Route exact path="/addModule:id" component={AddModule} />
      </div>
      </Router>
  )

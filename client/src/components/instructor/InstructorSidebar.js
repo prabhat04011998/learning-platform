@@ -34,8 +34,9 @@ function InstructorSidebar() {
               </li>
               <hr />
               <li>
-                <a href="#">options3</a>
+                <a href="#">View Modules</a>
               </li>
+
             </ul>
           </div>
   
@@ -48,13 +49,6 @@ function InstructorSidebar() {
                 <a href="">View All Request </a>
               </li>
               <hr />
-              <li>
-                <a href="">options2</a>
-              </li>
-              <hr />
-              <li>
-                <a href="">options3</a>
-              </li>
             </ul>
           </div>
   

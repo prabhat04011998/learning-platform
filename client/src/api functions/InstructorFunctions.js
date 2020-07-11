@@ -32,9 +32,38 @@ export const getAllCourse = instructortoken => {
       })
 }
 
+export const addModule = (id,modulename,instructortoken) => {
+  return axios
+    .post('api/instructor/addmodule',{
+      courseid:id,
+      module_name:modulename
+    },{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const makeCourse = (course,instructortoken) => {
   return axios
     .post('api/instructor/makecourse',course,{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const editCourse = (course,instructortoken) => {
+  return axios
+    .put('api/instructor/updatecourse',course,{headers: {
       Authorization: `${instructortoken}`
     }})
     .then(response => {

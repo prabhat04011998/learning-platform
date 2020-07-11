@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import Header from "../../includes/Header2";
 import Footer from "../../includes/Footer";
 import SubHeader from "../../includes/Subheader2";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import InstructorSidebar from "./InstructorSidebar";
 import '../../css/InstructorCourses.css'
-import {makeCourse} from '../../api functions/InstructorFunctions'
+import {editCourse} from '../../api functions/InstructorFunctions'
+import { GetACourse } from "../../api functions/AdminFunctions";
 
-function MakeCourse() {
+function EditCourse() {
   const history = useHistory();
+  const {id} = useParams()
     const [course,setCourse] = useState({
+      _id:id,
       course_name:"",
       course_details:"",
       category:"",
@@ -19,9 +22,21 @@ function MakeCourse() {
     const [coursemade,setCoursemade]=useState(false)
     const [tag,setTags]=useState("")
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        async function setState(){
+            await GetACourse(id).then((res) => {         
+                setCourse(res.message)  
+            })
+        
+        }
+        setState()
+      }, []);
+
       function onSubmit(e){
         e.preventDefault()
-        makeCourse(course, localStorage.instructortoken).then((res) => {
+        editCourse(course, localStorage.instructortoken).then((res) => {
+            console.log(res);
           if (res.status == "1") {
             console.log(res);
             setCourse({
@@ -47,7 +62,7 @@ function MakeCourse() {
             })
           } else {
             console.log(res);
-            setError(res.message);
+            setError(res.msg);
             setCourse({
               course_name:"",
               course_details:"",
@@ -87,12 +102,12 @@ function MakeCourse() {
           <div id="courses" className="courses container-fluid">
         <div className="login-form col-lg-6 col-sm-12">
         {coursemade ? (
-            <h3 className="success">Course made !!! redirecting .........</h3>
+            <h3 className="success">Edit Success !!! redirecting .........</h3>
           ) : null}
-          {error.length > 0 ? <h3 className="error">{error}</h3> : null}
+          {error ? <h3 className="error">{error}</h3> : null}
           <form noValidate onSubmit={onSubmit} className="">
             <h1 className="h3 mb-3 font-weight-normal">Your course details</h1>
-            <div className="form-group">
+            <div className="form-group moduleform">
               <label htmlFor="course_name">Course Name</label>
               <input
                 type="text"
@@ -157,7 +172,7 @@ function MakeCourse() {
                 </div>
                 
               </div>
-            <button type="submit" className="btn btn-lg btn-primary btn-block sbt-btn">
+            <button type="submit" className="btn btn-primary btn-block sbt-btn">
               Submit
             </button>
           </form>
@@ -172,4 +187,4 @@ function MakeCourse() {
     )
 }
 
-export default MakeCourse
+export default EditCourse

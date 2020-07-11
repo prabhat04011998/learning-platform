@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../includes/Header2";
+import { useHistory } from 'react-router-dom'
 import Footer from "../../includes/Footer";
 import SubHeader from "../../includes/Subheader2";
 import InstructorSidebar from "./InstructorSidebar";
@@ -10,14 +11,29 @@ import { getAllCourse } from "../../api functions/InstructorFunctions";
 
 function InstructorCourses() {
   const [courses, setCourses] = useState([]);
+  const history= useHistory()
   useEffect(() => {
     if (localStorage.instructortoken) {
       getAllCourse(localStorage.instructortoken).then((res) => {
+        console.log(res);
         setCourses(res);
       });
     }
   }, []);
 
+  function handleEdit(id){
+    var link='editCourse'+id
+    history.push({
+      pathname:link 
+    });
+  }
+
+  function handleModule(id){
+    var link='addModule'+id
+    history.push({
+      pathname:link 
+    });
+  }
 
   return (
     <div>
@@ -27,7 +43,7 @@ function InstructorCourses() {
           <SubHeader />
           <InstructorSidebar />
           <div id="courses" className="courses container-fluid">
-            {/* {courses.length > 0 ? (
+            {courses.length > 0 ? (
               courses.map((c) => {
                 return (  
                   <CourseCard
@@ -37,45 +53,16 @@ function InstructorCourses() {
                     price={c.price}
                     numstudents="50"
                     courseimage={courseimg}
+                    handleEdit={() => {handleEdit(c._id)}}
+                    handleModule={() => {handleModule(c._id)}}
                   />
                 );
               })
             ) : (
               <h1>You Currently dont have Any courses </h1>
-            )} */}
+            )}
 
-            <CourseCard 
-                name='search engine optimisation'
-                details='SEO or Search Engine Optimization is the key factor to gain traffic into your website. Our core professionals look into SEO with careful observation and thorough research. .'
-                category='web'
-                price='Rs 500'
-                numstudents='50'
-                courseimage={courseimg}
-                />
-                <CourseCard 
-                name='search engine optimisation'
-                details='SEO or Search Engine Optimization is the key factor to gain traffic into your website. Our core professionals look into SEO with careful observation and thorough research. .'
-                category='web'
-                price='Rs 500'
-                numstudents='50'
-                courseimage={courseimg}
-                />
-                <CourseCard 
-                name='search engine optimisation'
-                details='SEO or Search Engine Optimization is the key factor to gain traffic into your website. Our core professionals look into SEO with careful observation and thorough research. .'
-                category='web'
-                price='Rs 500'
-                numstudents='50'
-                courseimage={courseimg}
-                />
-                <CourseCard 
-                name='search engine optimisation'
-                details='SEO or Search Engine Optimization is the key factor to gain traffic into your website. Our core professionals look into SEO with careful observation and thorough research. .'
-                category='web'
-                price='Rs 500'
-                numstudents='50'
-                courseimage={courseimg}
-                />
+            
           </div>
           <Footer />
         </div>
