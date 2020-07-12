@@ -175,9 +175,17 @@ admin.post("/getcourse" , async (req,res) => {
   Course.findById(req.body.course_id,(err,course) => {
     if(!err){
       if(course){
+        const data=  {
+          course_name:course.course_name,
+          course_details:course.course_details,
+          _id:course._id,
+          price:course.price,
+          category:course.category,
+          instructor_id:course.instructor_id
+        }
         res.json({
           status:"1",
-          message:course
+          message:data
         })
       }else{
         res.json({

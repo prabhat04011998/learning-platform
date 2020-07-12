@@ -51,9 +51,6 @@ function StudentSidebar() {
                 <a href="">options2</a>
               </li>
               <hr />
-              <li>
-                <a href="">options3</a>
-              </li>
             </ul>
           </div>
   

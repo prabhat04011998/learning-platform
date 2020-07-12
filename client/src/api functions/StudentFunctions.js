@@ -58,4 +58,21 @@ export const studentregister = newUser => {
     .then(response => {
       console.log(' Student Registered')
     })
+    .catch(err => {
+      console.log(err)
+    })
 }
+
+export const buyCourse = (studenttoken,data) => {
+  return axios
+   .post('api/student/buycourse', data,{headers: {
+    Authorization: `${studenttoken}`
+  }})
+   .then(response => {
+     return response.data
+   })
+   .catch(err => {
+    console.log(err)
+  })
+}
+

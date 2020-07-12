@@ -31,6 +31,7 @@ function StudentDashboard() {
   }, []);
   return (
     <div>
+      {localStorage.studenttoken ? (<div>
       <Header />
       <SubHeader />
       <StudentSidebar />
@@ -52,8 +53,10 @@ function StudentDashboard() {
       </div>
 
       <Footer />
+    </div>) : (window.location.href='/studentlogin')}
     </div>
   );
 }
 
 export default StudentDashboard;
+

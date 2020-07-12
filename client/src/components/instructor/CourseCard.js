@@ -11,7 +11,8 @@ function CourseCard({
   courseimage,
   numstudents,
   handleEdit,
-  handleModule
+  handleModule,
+  viewcourse
 }) {
 
 
@@ -31,7 +32,8 @@ function CourseCard({
         </ul>
         <button className = 'btn btn-primary opt-btn' onClick={() => {handleEdit()}}>Edit</button>
         <button className='btn btn-danger opt-btn'>delete</button>
-        <button className='btn btn-primary' onClick={() => {handleModule()}}>Add Module</button>
+        <button className='btn btn-primary opt-btn' onClick={() => {handleModule()}}>Add Module</button>
+        <button className='btn btn-danger opt-btn' onClick={() => {viewcourse()}}>View</button>
     </div>
   );
 }

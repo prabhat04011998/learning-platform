@@ -344,6 +344,33 @@ instructor.post('/addmodule' , async (req,res) => {
       })
 })
 
+//------------------get complete course data -------------------------------/
+
+instructor.post("/getcoursedetails" , async (req,res) => {
+  Course.findById(req.body.course_id,(err,course) => {
+    if(!err){
+      if(course){
+        
+        res.json({
+          status:"1",
+          message:course
+        })
+      }else{
+        res.json({
+          status:"0",
+          message:"no course"
+        })
+      }
+    }else{
+      res.json({
+        status:"-1",
+        message:err
+      })
+    }
+  })
+})
+
+
   // ----------------------------api to add data to course module ---------------------------------------
 
   instructor.post('/dataupload', (req, res) => {
@@ -356,14 +383,17 @@ instructor.post('/addmodule' , async (req,res) => {
       .then(instructor => {
         if (instructor) {
           if (req.files === null) {
-            return res.status(400).json({ msg: 'No file uploaded' });
+            return res.status(400).json({status:"0", message: 'No file uploaded' });
           }
           const file = req.files.file;
 
           file.mv(`./uploads/${instructor.instructor_name}_${file.name}`, err => {
             if (err) {
               console.error(err);
-              return res.status(500).send(err);
+              return res.status(500).json({
+                status:"-1",
+                message:err
+              });
             }else{
               Course.findById(req.body.courseid)
              .then(course => {
@@ -374,11 +404,13 @@ instructor.post('/addmodule' , async (req,res) => {
                });
                course.save()        
              })
-            res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+            res.json({ status:"1",
+          message:"uploaded successfully" });
             }
           });
         } else {
-          res.send('instructor does not exist')
+          res.json({status:"0",
+        message:'instructor does not exist'})
         }
       })
       .catch(err => {

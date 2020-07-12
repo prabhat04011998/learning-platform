@@ -13,6 +13,8 @@ function Login() {
         email:'',
         password:''
     })
+    const [error,setError] = useState(false)
+
     
       function onChange(e) {
        setState({
@@ -33,7 +35,17 @@ function Login() {
         studentlogin(user).then(res => {
           if (res.status == "1") {
             history.push(`/studentdashboard`)
-          }
+            setState({
+              email:'',
+              password:''
+          })
+          }else{
+            setError(true)
+            setState({
+              email:'',
+              password:''
+          })
+        }
         })
       }
 
@@ -43,6 +55,7 @@ function Login() {
             <SubHeader />
            <div className="form-container">
            <div className="login-form col-lg-6 col-sm-12">
+           {error ? (<h3 className="error">invalid credentials try again</h3>) : null}
             <form noValidate onSubmit={onSubmit} className="my-form">
               <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
               <div className="form-group">

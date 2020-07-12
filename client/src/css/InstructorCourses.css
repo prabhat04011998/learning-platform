@@ -63,3 +63,25 @@
     width: 70%;
     margin-left: 15%;
 }
+
+
+/*----------specific course css ----------- */
+
+.specific-div{
+    text-align: center;
+    padding: 40px;
+}
+
+.module-img{
+    width: 70%;
+    height: 30vh;
+}
+
+.module-box{
+    border: 0.5px solid grey;
+    background-color: rgb(202, 231, 243);
+    padding: 20px;
+    border-radius: 28px;
+    width: 50%;
+    display: inline-block;
+}

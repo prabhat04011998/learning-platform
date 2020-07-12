@@ -101,9 +101,37 @@ export const fetchBasicProfile = id => {
     })
 }
 
+export const fetchCourseDetails = (id,instructortoken) => { 
+  return axios
+    .post('api/instructor/getcoursedetails',{
+      course_id:id
+    },{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 export const editProfile = (instructor,instructortoken) => {
   return axios
     .put('api/instructor/update',instructor,{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+export const addData = (instructortoken,data) => { 
+  return axios
+    .post('api/instructor/dataupload',data,{headers: {
       Authorization: `${instructortoken}`
     }})
     .then(response => {

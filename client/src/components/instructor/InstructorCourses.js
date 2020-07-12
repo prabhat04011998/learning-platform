@@ -21,6 +21,13 @@ function InstructorCourses() {
     }
   }, []);
 
+  function viewcourse(id){
+    var link = 'viewcourse'+id
+    history.push({
+      pathname:link 
+    });
+  }
+
   function handleEdit(id){
     var link='editCourse'+id
     history.push({
@@ -55,6 +62,7 @@ function InstructorCourses() {
                     courseimage={courseimg}
                     handleEdit={() => {handleEdit(c._id)}}
                     handleModule={() => {handleModule(c._id)}}
+                    viewcourse={() => {viewcourse(c._id)}}
                   />
                 );
               })

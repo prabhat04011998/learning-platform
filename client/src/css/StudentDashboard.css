@@ -104,10 +104,11 @@
     padding-bottom: 50px;
     border-radius: 20px;
     background-color: #b9caf5;
+    margin:20px;
 }
 
 .course-img{
-    height: 400px;
+    height: 300px;
     width: 400px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -115,4 +116,30 @@
 
 .course-handler{
     padding: 50px;
+}
+
+.allcourseslink{
+    color:white;
+}
+
+.allcourses-btn{
+    margin:50px;
+}
+
+/*--------------------------request access ----------------------------------*/
+
+.requestContainer{
+    text-align: center;
+    padding: 40px;
+    display: inline-block;
+    width: 80%;
+}
+
+.file-input{
+    margin: 20px 0 20px 40%;
+    font-size: x-large;
+}
+
+.request-btn{
+    margin: 20px;
 }

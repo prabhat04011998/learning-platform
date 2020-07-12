@@ -12,7 +12,6 @@ import InstructorDashboard from './components/instructor/InstructorDashboard'
 import StudentDashboard from './components/student/StudentDashboard'
 import StudentCourses from './components/student/MyCourse'
 import RequestCourse from './components/student/RequestCourse'
-import CoursePage from './components/student/CoursePage'
 import CreateInstructor from './components/admin/CreateInstructor'
 import MakeCourse from './components/instructor/MakeCourse'
 import InstructorCourses from './components/instructor/InstructorCourses'
@@ -22,7 +21,9 @@ import StudentEdit from './components/student/StudentEdit'
 import AllCourses from './components/AllCourses'
 import CourseDescription from './components/Course Info/CourseDescription'
 import EditCourse from './components/instructor/EditCourse';
-import AddModule from './components/instructor/AddModule'
+import AddModule from './components/instructor/AddModule';
+import SpecificCourse from './components/instructor/SpecificCourse'
+
 
 function App() {
  return(
@@ -43,12 +44,13 @@ function App() {
      <Route exact path="/instructoredit" component={EditInstructor} />
      <Route exact path="/studentcourses" component={MyCourse} />
      <Route exact path="/studentrequestcourse" component={RequestCourse} />
-     <Route exact path="/studentcoursepage" component={CoursePage} />
      <Route exact path="/studentedit" component={StudentEdit} />
      <Route exact path="/allCourses" component={AllCourses} />
      <Route exact path="/CourseDescription:id" component={CourseDescription} />
      <Route exact path="/editCourse:id" component={EditCourse} />
      <Route exact path="/addModule:id" component={AddModule} />
+     <Route exact path="/studentRequestAccess" component={RequestCourse} />
+     <Route exact path="/viewcourse:id" component={SpecificCourse} />
      </div>
      </Router>
  )

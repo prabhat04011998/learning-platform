@@ -158,6 +158,7 @@ student.put('/update' , async (req,res) => {
 // -------------------------------------api to submit your reciept and requet course access --------------------
 
   student.post('/buycourse', (req, res) => {
+    console.log(req.body);
     var decoded  = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
     Student.findById(decoded._id ).then((student) => {
       if(student){
@@ -186,13 +187,14 @@ student.put('/update' , async (req,res) => {
               course.save()
             res.json({
               status : 1,
-              msg : 'course purchased successfull'
+              message : 'course purchased successfull'
             })
            }else{
 
 
             if (req.files === null) {
-              return res.status(400).json({ msg: 'No file uploaded' });
+              return res.status(400).json({status:"0",
+               message: 'No file uploaded' });
             }else{
               const file = req.files.file;
   
@@ -232,19 +234,29 @@ student.put('/update' , async (req,res) => {
               });
               res.json({
                 status : 1,
-                msg : 'request sent successfull'
+                message : 'request sent successfull'
               })
             }
             
            }
           }else{
-            res.send('no course found with matching id')
+            res.json({
+              status:"0",
+              message:"invalid course id try again"
+            })
           }
         })
       }else{
-        console.log('no');
-        
+        res.json({
+          status:"0",
+          message:"no student acess"
+        })        
       }
+    }).catch((err) => {
+      res.json({
+        status:"-1",
+        message:err
+      })
     })
   })
 
