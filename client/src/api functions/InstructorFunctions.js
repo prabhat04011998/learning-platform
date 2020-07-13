@@ -141,3 +141,17 @@ export const addData = (instructortoken,data) => {
       console.log(err)
     })
 }
+
+
+export const processRequest = (instructortoken,data) => { 
+  return axios
+    .post('api/instructor/processRequest',data,{headers: {
+      Authorization: `${instructortoken}`
+    }})
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

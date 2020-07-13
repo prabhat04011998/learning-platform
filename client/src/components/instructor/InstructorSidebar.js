@@ -46,7 +46,7 @@ function InstructorSidebar() {
           <div className="admin-panel-sidebar-options" id="sidebar-options">
             <ul id="sidebar-options2">
               <li>
-                <a href="">View All Request </a>
+                <a href="/processrequest">Process Request </a>
               </li>
               <hr />
             </ul>

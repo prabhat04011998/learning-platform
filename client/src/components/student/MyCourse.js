@@ -25,7 +25,7 @@ function MyCourse() {
   }, []);
 
   function handlervisit(coursename){
-    var link = coursename.split(" ").join("");
+    var link = "main"+coursename.split(" ").join("");
     window.location.href=link
   }
     return (

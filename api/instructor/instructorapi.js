@@ -374,7 +374,6 @@ instructor.post("/getcoursedetails" , async (req,res) => {
   // ----------------------------api to add data to course module ---------------------------------------
 
   instructor.post('/dataupload', (req, res) => {
-
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   
     Instructor.findOne({
@@ -481,7 +480,7 @@ instructor.post('/processRequest' , async (req,res) => {
     }).catch((err)=>{
       res.json({
         status:"-1",
-        error:err
+        message:err
       })
     })
  

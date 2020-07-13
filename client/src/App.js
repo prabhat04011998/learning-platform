@@ -23,6 +23,7 @@ import CourseDescription from './components/Course Info/CourseDescription'
 import EditCourse from './components/instructor/EditCourse';
 import AddModule from './components/instructor/AddModule';
 import SpecificCourse from './components/instructor/SpecificCourse'
+import ProcessRequest from './components/instructor/ProcessRequest'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
      <Route exact path="/addModule:id" component={AddModule} />
      <Route exact path="/studentRequestAccess" component={RequestCourse} />
      <Route exact path="/viewcourse:id" component={SpecificCourse} />
+     <Route exact path="/processrequest" component={ProcessRequest} />
      </div>
      </Router>
  )
