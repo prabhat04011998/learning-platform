@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../includes/Header2";
 import Footer from "../../includes/Footer";
+import { useHistory, useParams } from 'react-router-dom'
+
 import SubHeader from "../../includes/Subheader2";
 import StudentSidebar from './StudentSidebar'
 import "../../css/StudentDashboard.css";
@@ -8,6 +10,7 @@ import courseimg from '../../images/seo-course-image.webp'
 import {fetchProfile } from "../../api functions/StudentFunctions";
 
 function MyCourse() {
+  const history = useHistory();
   const [course, setCourse] = useState([]);
   const [noCourses,setnoCourses]=useState(false)
   useEffect(() => {
@@ -15,6 +18,7 @@ function MyCourse() {
     fetchProfile(localStorage.studenttoken)
       .then((res) => {
         setCourse(res.message.courses);
+
         if(res.message.courses.length == 0){
           setnoCourses(true)
         }
@@ -24,9 +28,12 @@ function MyCourse() {
       });
   }, []);
 
-  function handlervisit(coursename){
-    var link = "main"+coursename.split(" ").join("");
-    window.location.href=link
+
+  function handlervisit(id){
+    var link = "CourseData"+id;
+    history.push({
+      pathname:link 
+    })
   }
     return (
       <div>
@@ -45,7 +52,7 @@ function MyCourse() {
               <div className="mycourse">
                 <img src={courseimg} alt="" className="course-img" />
                  <h3>{c.coursename}</h3>
-                 <button type='button' className="btn btn-danger btn-lg" onClick={() => {handlervisit(c.coursename)}}>Go To course</button>
+                 <button type='button' className="btn btn-danger btn-lg" onClick={() => {handlervisit(c.courseid)}}>Go To course</button>
               </div>
             )
           })}

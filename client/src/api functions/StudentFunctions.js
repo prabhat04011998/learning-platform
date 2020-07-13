@@ -75,4 +75,3 @@ export const buyCourse = (studenttoken,data) => {
     console.log(err)
   })
 }
-

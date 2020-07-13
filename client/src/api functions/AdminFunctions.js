@@ -70,6 +70,20 @@ export const GetACourse = (id) => {
 }
 
 
+export const fetchCourseDetails = (id) => { 
+  return axios
+    .post('api/admin/getcoursedetails',{
+      course_id:id
+    })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+
 export const instructorregister = (newUser,admintoken) => {
     return axios
      .post('api/admin/registerinstructor', newUser,{headers: {
